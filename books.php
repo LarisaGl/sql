@@ -1,3 +1,9 @@
+<?php
+include "config.php";
+$sql='select * from books';
+$res=mysqli_query ($connect, $sql);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,36 +18,24 @@
 </head>
 <body>
 
-<?php
-
-include "config.php";
-
-$sql='select * from books';
-
-$res=mysqli_query ($connect, $sql);
-
-echo "<table>";
-echo "<tr>";
-	echo "<td>"."name"."</td>";
-	echo "<td>"."author"."</td>";
-	echo "<td>"."year"."</td>";
-	echo "<td>"."isbn"."</td>";
-	echo "<td>"."genre"."</td>";
-echo "</tr>";
-
-while ($data=mysqli_fetch_assoc ($res)) {
-	echo "<tr>";
-	echo "<td>".$data['name']."</td>";
-	echo "<td>".$data['author']."</td>";
-	echo "<td>".$data['year']."</td>";
-	echo "<td>".$data['isbn']."</td>";
-	echo "<td>".$data['genre']."</td>";
-	echo "</tr>";
-}
-
-echo "</table>";
-?>
-
+<table>
+  <tr>
+    <td><b>name</b></td>
+    <td><b>author</b></td>
+    <td><b>year</b></td>
+    <td><b>isbn</b></td>
+    <td><b>genre</b></td>
+  </tr>
+  <?php while ($data=mysqli_fetch_assoc ($res)) { ?>
+  <tr>
+    <td><?php echo $data['name']?></td>
+    <td><?php echo $data['author']?></td>
+    <td><?php echo $data['year']?></td>
+    <td><?php echo $data['isbn']?></td>
+    <td><?php echo $data['genre']?></td>
+    </tr>
+  <?php } ?>
+</table>
 
 </body>
 </html>
